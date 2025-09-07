@@ -150,8 +150,8 @@ document.querySelector('#playReader').addEventListener('click', () => {
     sentences.forEach(sentence => {
         const u = new SpeechSynthesisUtterance(sentence + '.');
         u.voice = getVoice();
-        u.rate = 1;
-        u.pitch = 2;
+        u.rate = 0.9;
+        u.pitch = 1.2;
         u.lang = 'en-US';
         u.onend = () => {
             if (!paused) {

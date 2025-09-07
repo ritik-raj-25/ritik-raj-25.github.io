@@ -115,9 +115,23 @@ document.querySelector('#close-readControls').addEventListener('click', () => {
 
 // Text-to-Speech functionality
 
-let utterance;
+let utterances = [];
+let index = 0;
+let paused = false;
+
+function getVoice() {
+    const synth = window.speechSynthesis;
+    const voices = synth.getVoices();
+    return voices.find(v => v.lang === 'en-US') || voices[0];
+}
+
 document.querySelector('#playReader').addEventListener('click', () => {
     window.speechSynthesis.cancel(); // Cancel any ongoing speech
+    
+    utterances = [];
+    index = 0;
+    paused = false;
+
     const elements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li');
     let fullText = '';
     elements.forEach(ele => {
@@ -125,19 +139,45 @@ document.querySelector('#playReader').addEventListener('click', () => {
             fullText += ele.innerText + '. ';
         }
     });
+
     if(fullText.trim() === '') {
         alert('No readable content found!');
         return;
     }
-    utterance = new SpeechSynthesisUtterance(fullText);
-    utterance.rate = 1;       
-    utterance.pitch = 2;      
-    utterance.lang = 'en-US'; 
-    window.speechSynthesis.speak(utterance);
+
+    const sentences = fullText.split('. ').filter(s => s.trim() !== '');
+
+    sentences.forEach(sentence => {
+        const u = new SpeechSynthesisUtterance(sentence + '.');
+        u.voice = getVoice();
+        u.rate = 1;
+        u.pitch = 2;
+        u.lang = 'en-US';
+        u.onend = () => {
+            if (!paused) {
+                ++index;
+                speakNext();
+            }
+        };
+        utterances.push(u);
+    });
+
+    speakNext();
 });
+
+function speakNext() {
+    if (index < utterances.length) {
+        window.speechSynthesis.speak(utterances[index]);
+    }
+}
+
 document.getElementById('pauseReader').addEventListener('click', () => {
-    window.speechSynthesis.pause();
+    paused = true;
+    window.speechSynthesis.cancel();
 });
 document.getElementById('resumeReader').addEventListener('click', () => {
-    window.speechSynthesis.resume();
+    if (paused) {
+        paused = false;
+        speakNext();
+    }
 });

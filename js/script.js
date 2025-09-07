@@ -151,7 +151,7 @@ document.querySelector('#playReader').addEventListener('click', () => {
         const u = new SpeechSynthesisUtterance(sentence + '.');
         u.voice = getVoice();
         u.rate = 0.9;
-        u.pitch = 0.8;
+        u.pitch = 1;
         u.lang = 'en-US';
         u.onend = () => {
             if (!paused) {

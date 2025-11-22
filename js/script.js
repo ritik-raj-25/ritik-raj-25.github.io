@@ -1,259 +1,185 @@
-const dayMode = document.getElementById('day-mode');
-const nightMode = document.getElementById('night-mode');
-const body = document.body;
+feather.replace(); // to replace all data-feather with icons
 
-// Initial dark mode
-(function(){
-    darkModeEnabled();
-    typingEffect()
-})();
-
-function darkModeEnabled() {
-    dayMode.style.display = 'block';
-    nightMode.style.display = 'none';
-    body.classList.add('dark');
-    document.querySelector('#github').src = 'assets/icons/git-hub-dark.png';
-    document.querySelector('#leetcode').src = 'assets/icons/LeetCode-dark.png';
-}
-
-function lightModeEnabled() {
-    dayMode.style.display = 'none';
-    nightMode.style.display = 'block';
-    body.classList.remove('dark');
-    document.querySelector('#github').src = 'assets/icons/git-hub-light.png';
-    document.querySelector('#leetcode').src = 'assets/icons/LeetCode-light.png';
-}
-
-// Light mode
-dayMode.addEventListener('click', lightModeEnabled);
-
-// Dark mode
-nightMode.addEventListener('click', darkModeEnabled);
-
-// Humburger menu
-const hamburger = document.querySelector('#hamburger');
-const nav = document.querySelector('.nav');
-const hamburgerClose = document.querySelector('#close-hamburger');
-
-hamburger.addEventListener('click', () => {
-    hamburger.style.display = 'none';
-    hamburgerClose.style.display = 'flex';
-    nav.style.display = 'flex';
-});
-hamburgerClose.addEventListener('click', () => {
-    hamburger.style.display = 'flex';
-    hamburgerClose.style.display = 'none';
-    nav.style.display = 'none';
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+mobileMenuButton.addEventListener('click', () => {
+  mobileMenu.classList.toggle('hidden');
 });
 
-// Humburger close
+const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+for(let i = 0; i < mobileMenuLinks.length; i++) {
+  mobileMenuLinks[i].addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+  });
+}
 
+const toTopButton = document.getElementById('to-top-button');
+window.addEventListener('scroll', () => {
+  if (window.pageYOffset > 300) {
+    toTopButton.classList.remove('hidden');
+  } 
+  else {
+    toTopButton.classList.add('hidden');
+  }
+});
+toTopButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
-// Typing animation
-function typingEffect() {
-    let typed = ['Problem Solver', 'Competitive Coder', 'Programmer', 'Web Developer', 'Learner', 'Tech Enthusiast'];
-    
-    let typing = document.querySelector('.typing');
-
-    let index = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    function type() {
-        let currentWord = typed[index % typed.length];
-
-        if(isDeleting) {
-            typing.textContent = currentWord.substring(0, charIndex--);
-        }
-        else {
-            typing.textContent = currentWord.substring(0, charIndex++);
-        }
-
-        if(!isDeleting && charIndex === currentWord.length) {
-            setTimeout(() => isDeleting = true, 1000);
-        }
-        else if(isDeleting && charIndex < 0){
-            index++;
-            charIndex = 0;
-            isDeleting = false;
-        }
-
-        let speed = isDeleting ? 60 : 120;
-        setTimeout(type, speed);
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const targetElement = document.querySelector(this.getAttribute('href'));
+    if(targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
     }
+  });
+});
 
-    type();
+const animatedItems = document.querySelectorAll('.animated-item');
+const observer = new IntersectionObserver((entries) => { // defining observer
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+    }
+  });
+}, { threshold: 0.1 });
+animatedItems.forEach(item => { observer.observe(item); });
+
+const typewriterElement = document.getElementById('typewriter');
+const phrases = ["Ritik Raj.", "a Web Developer.", "a Problem Solver.", "a Tech Enthusiast.", "a Learner."];
+let phraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function typeEffect() {
+  if (!typewriterElement) return;
+  const currentPhrase = phrases[phraseIndex];
+  const currentText = isDeleting ? currentPhrase.substring(0, charIndex - 1) : currentPhrase.substring(0, charIndex + 1);
+  
+  typewriterElement.textContent = currentText;
+
+  if (!isDeleting && charIndex === currentPhrase.length) {
+    setTimeout(() => isDeleting = true, 2000);
+  } 
+  else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    phraseIndex = (phraseIndex + 1) % phrases.length;
+  }
+  
+  charIndex += isDeleting ? -1 : 1;
+  const typingSpeed = isDeleting ? 100 : 150;
+  setTimeout(typeEffect, typingSpeed);
 }
 
-// Footer contact icons functionality
-document.querySelector('#emailIcon').addEventListener('click', () => {
-    const email = 'ritikbunty2511@gmail.com';
-    window.open(
-        `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`,
-        '_blank'
-    );
-});
+const form = document.getElementById('contact-form');
+const formStatus = document.getElementById('form-status');
 
-const callIcon = document.querySelector('#callIcon');
-callIcon.addEventListener('click', () => {
-    window.location.href = 'tel:+919798058211';
-});
-
-// reader functionality
-document.querySelector('.reader').addEventListener('click', () => {
-    const readerControls = document.querySelector('#readerControls');
-    const readerIcon = document.querySelector('.reader');
-    readerIcon.style.display = 'none';
-    readerControls.style.display = 'flex';
-});
-document.querySelector('#close-readControls').addEventListener('click', () => {
-    const readerControls = document.querySelector('#readerControls');
-    const readerIcon = document.querySelector('.reader');
-    readerControls.style.display = 'none';
-    readerIcon.style.display = 'block';
-});
-
-// Text-to-Speech functionality
-
-let utterances = [];
-let index = 0;
-let paused = false;
-
-function getVoice() {
-    const synth = window.speechSynthesis;
-    const voices = synth.getVoices();
-    return voices.find(v => v.lang === 'en-US') || voices[0];
+async function handleSubmit(event) {
+  event.preventDefault();
+  const data = new FormData(event.target);
+  
+  fetch(event.target.action, {
+    method: form.method,
+    body: data,
+    headers: {
+      'Accept': 'application/json'
+    }
+  }).then(response => {
+    if (response.ok) {
+      formStatus.textContent = "Thanks for your message! I'll get back to you soon.";
+      formStatus.className = "mt-6 text-center text-lg text-green-400";
+      form.reset();
+    } 
+    else {
+      formStatus.textContent = "Oops! There was a problem submitting your form.";
+      formStatus.className = "mt-6 text-center text-lg text-red-400";
+    }
+  }).catch(error => {
+    formStatus.textContent = "Oops! There was a network error. Please try again.";
+    formStatus.className = "mt-6 text-center text-lg text-red-400";
+  });
 }
 
-document.querySelector('#playReader').addEventListener('click', () => {
-    window.speechSynthesis.cancel(); // Cancel any ongoing speech
-    
-    utterances = [];
-    index = 0;
-    paused = false;
+form.addEventListener("submit", handleSubmit);
 
-    const elements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li');
-    let fullText = '';
-    elements.forEach(ele => {
-        if (ele.offsetParent !== null) { // only visible elements
-            fullText += ele.innerText + '. ';
-        }
-    });
-
-    if(fullText.trim() === '') {
-        alert('No readable content found!');
-        return;
-    }
-
-    const sentences = fullText.split('. ').filter(s => s.trim() !== '');
-
-    sentences.forEach(sentence => {
-        const u = new SpeechSynthesisUtterance(sentence + '.');
-        u.voice = getVoice();
-        u.rate = 0.9;
-        u.pitch = 1.2;
-        u.lang = 'en-US';
-        u.onend = () => {
-            if (!paused) {
-                ++index;
-                speakNext();
-            }
-        };
-        utterances.push(u);
-    });
-
-    speakNext();
-});
-
-function speakNext() {
-    if (index < utterances.length) {
-        window.speechSynthesis.speak(utterances[index]);
-    }
-}
-
-document.getElementById('pauseReader').addEventListener('click', () => {
-    paused = true;
-    window.speechSynthesis.cancel();
-});
-document.getElementById('resumeReader').addEventListener('click', () => {
-    if (paused) {
-        paused = false;
-        speakNext();
-    }
-});
-
-
-// Particles.js configuration
+// Particles.js Config
 particlesJS('particles-js', {
-    "particles": {
-        "number": {
-            "value": 128,
-            "density": {
-                "enable": true,
-                "value_area": 800
-            }
-        },
-        "color": {
-            "value": "#22d3ee"
-        },
-        "shape": {
-            "type": "circle",
-        },
-        "opacity": {
-            "value": 0.3,
-            "random": true,
-            "anim": {
-                "enable": true,
-                "speed": 1,
-                "opacity_min": 0.1,
-                "sync": false
-            }
-        },
-        "size": {
-            "value": 3,
-            "random": true,
-            "anim": {
-                "enable": false
-            }
-        },
-        "line_linked": {
-            "enable": true,
-            "distance": 150,
-            "color": "#0ea5e9",
-            "opacity": 0.2,
-            "width": 1
-        },
-        "move": {
-            "enable": true,
-            "speed": 2,
-            "direction": "none",
-            "random": false,
-            "straight": false,
-            "out_mode": "out",
-            "bounce": false,
-            "attract": { enable: false, rotateX: 600, rotateY: 1200 },
-        }
+  "particles": {
+    "number": {
+      "value": 80,
+      "density": {
+        "enable": true,
+        "value_area": 800
+      }
     },
-    "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-            "onhover": {
-                "enable": true,
-                "mode": "grab"
-            },
-            "onclick": {
-                "enable": false
-            },
-            "resize": true
-        },
-        "modes": {
-            "grab": {
-                "distance": 140,
-                "line_linked": {
-                    "opacity": 0.5
-                }
+    "color": {
+      "value": "#22d3ee"
+    },
+    "shape": {
+      "type": "circle",
+    },
+    "opacity": {
+      "value": 0.3,
+      "random": true,
+      "anim": {
+        "enable": true,
+        "speed": 1,
+        "opacity_min": 0.1,
+        "sync": false
+      }
+    },
+    "size": {
+      "value": 3,
+      "random": true,
+      "anim": {
+        "enable": false
+      }
+    },
+    "line_linked": {
+      "enable": true,
+      "distance": 150,
+      "color": "#0ea5e9",
+      "opacity": 0.2,
+      "width": 1
+    },
+    "move": {
+      "enable": true,
+      "speed": 2,
+      "direction": "none",
+      "random": false,
+      "straight": false,
+      "out_mode": "out",
+      "bounce": false,
+    }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onhover": {
+        "enable": true,
+        "mode": "grab"
+      },
+      "onclick": {
+        "enable": false
+      },
+      "resize": true
+    },
+     "modes": {
+        "grab": {
+            "distance": 140,
+            "line_linked": {
+                "opacity": 0.5
             }
         }
-    },
-    "retina_detect": true
+    }
+  },
+  "retina_detect": true
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('#home .animated-item').forEach(item => {
+    item.classList.add('is-visible');
+  });
+  setTimeout(typeEffect, 500);
 });

@@ -3,242 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
     <title>Ritik Raj | Portfolio</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href='https://cdn.boxicons.com/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
 </head>
-<body>
-    <!-- Header -->
-    <header class="header">
-        <a href="#home" class="logo-link">
-            <h1 class="logo">&lt;<span>Ritik Raj</span> /&gt;</h1>
-        </a>
-
-        <nav class="nav">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#about" class="nav-link">About</a>
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#projects" class="nav-link">Projects</a>
-            <a href="#education" class="nav-link">Education</a>
-            <a href="#certificates" class="nav-link">Certificates</a>
-            <a href="#achievements" class="nav-link">Achievements</a>
-            <a href="#contact" class="nav-link">Contact</a>
-        </nav>
-        <div>
-            <span class="material-symbols-outlined" id="hamburger">reorder</span>
-            <span class="material-symbols-outlined" id="close-hamburger">close</span>
+<body class="antialiased">
+    <header class="glass-effect fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto py-5 flex justify-between items-center px-6 md:px-12">
+            <a href="#home" class="text-2xl font-bold text-white tracking-tight hover:text-cyan-400 transition-colors duration-300">&lt; Ritik Raj /&gt;</a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="text-slate-300 hover:text-cyan-400 transition duration-300">About</a>
+                <a href="#projects" class="text-slate-300 hover:text-cyan-400 transition duration-300">Projects</a>
+                <a href="#education" class="text-slate-300 hover:text-cyan-400 transition duration-300">Education</a>
+                <a href="#achievements" class="text-slate-300 hover:text-cyan-400 transition duration-300">Achievements</a>
+                <a href="#contact" class="text-slate-300 hover:text-cyan-400 transition duration-300">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <i data-feather="menu"></i>
+            </button>
         </div>
-
-        <div class="icon">
-            <a href="https://www.linkedin.com/in/ritik-raj-rr" target="_blank">
-                <img src="assets/icons/linkedIn.png" id="linkedIn" alt="linkedIn" class="icon-img">
-            </a>
-            <a href="https://leetcode.com/u/ritik_raj25/" target="_blank">
-                <img src="assets/icons/LeetCode-dark.png" id="leetcode" alt="leetcode" class="icon-img">
-            </a>
-            <a href="https://github.com/ritik-raj-25" target="_blank">
-                <img src="assets/icons/git-hub-dark.png" id="github" alt="gitHub" class="icon-img">
-            </a>
-            <span>
-                <img src="assets/icons/sun.png" id="day-mode" class="icon-img">
-                <img src="assets/icons/moon.png" id="night-mode" class="icon-img">
-            </span>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#about" class="block py-2 text-slate-300 hover:text-cyan-400">About</a>
+            <a href="#projects" class="block py-2 text-slate-300 hover:text-cyan-400">Projects</a>
+            <a href="#education" class="block py-2 text-slate-300 hover:text-cyan-400">Education</a>
+            <a href="#achievements" class="block py-2 text-slate-300 hover:text-cyan-400">Achievements</a>
+            <a href="#contact" class="block py-2 text-slate-300 hover:text-cyan-400">Contact</a>
         </div>
     </header>
+
     <div id="particles-js"></div>
-    <main class="main">
-        <!-- Home Section -->
-        <section id="home">
-            <div class="home-content">
-                <h3>Hello, I'm</h3>
-                <h1>Ritik Raj</h1>
-                <h3>And I'm a <span class="typing"></span><span class="cursor">|</span></h3>
-            </div>
-            <div class="home-img">
-                <img src="assets/images/my-pic.png" alt="Ritik Raj" class="home-img-pic">
+    
+    <main class="container mx-auto px-6 md:px-12">
+        <!-- Home Section / Hero Section -->
+        <section id="home" class="min-h-screen flex items-center section pt-20">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <!-- Left Box -->
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <span class="text-cyan-400 font-semibold animated-item" style="--delay: 0.1s;">Full-Stack Developer</span>
+                        <h1 class="text-4xl md:text-6xl font-bold text-white mt-2 mb-4 leading-tight animated-item" style="--delay: 0.2s;">
+                            I am <span id="typewriter" class="typing-cursor gradient-text"></span>
+                        </h1>
+                        <p class="text-lg md:text-xl text-slate-400 mb-8 max-w-xl animated-item" style="--delay: 0.3s;">
+                            Specializing in building secure, scalable, and user-centric web applications with a focus on robust back-end logic and seamless front-end experiences.
+                        </p>
+                        <div class="flex justify-center md:justify-start items-center space-x-4 animated-item" style="--delay: 0.4s;">
+                            <a href="#projects" class="bg-cyan-500 text-white px-8 py-3 rounded-md font-semibold hover:bg-cyan-600 transition duration-300 shadow-lg shadow-cyan-500/30 text-lg">My Projects</a>
+                            <a href="/assets/docs/RitikResume.pdf" target="_blank" class="bg-slate-700 text-white px-8 py-3 rounded-md font-semibold hover:bg-slate-600 border border-slate-600 transition duration-300 text-lg">View Resume</a>
+                        </div>
+                    </div>
+
+                    <!-- Right Box -->
+                    <div class="md:w-1/2 animated-item flex justify-end items-center" style="--delay: 0.5s;">
+                        <div class="relative w-80 h-80 image-container-glow">
+                             <img src="/assets/images/my-pic.png" alt="Ritik Raj Profile Picture" class="rounded-full w-full h-full object-cover border-4 border-cyan-600/50">
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- About Section -->
-        <section class="section" id="about">
-            <div class="section-heading">
-                <h2>About Me<span>.</span></h2>
-            </div>
-            <div class="section-content">
-                <p>
-                    Hey &#128075;, 
-                </p>
-                <p>
-                    I'm Ritik Raj, currently pursuing my Master's in Computer Applications from Vellore Institute of Technology, Vellore. I come from a strong computer applications background, and I'm building my career around web development and problem solving.
-                </p>
-                <p>
-                    I primarily work with Core Java and the Spring ecosystem (Spring Boot, Spring Core, Spring Security, Spring Data JPA, Hibernate). Alongside that, I've explored databases (such as MySQL and MongoDB,) cloud services (AWS EC2, S3, Elastic Beanstalk, Lambda), and containerization (Docker).
-                </p>
-                <p>
-                    I enjoy problem-solving and have solved over 500 Data Structures and Algorithms problems on LeetCode, achieving a 1600+ contest rating and earning over 14+ badges.
-                </p>
-                <a href="assets/docs/RitikResume.pdf" download="Ritik_Raj_Resume.pdf">
-                    Download Resume
-                </a>
-            </div>
-        </section>
-        <section class="section" id="skills">
-            <div class="section-heading">
-                <h2>Technical Skills<span>.</span></h2>
-            </div>
-            <div class="section-content">
-                <div class="skill-card">
-                    <h3>Programming Languages</h3>
-                    <p>Java, C, C++, Python</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Backend</h3>
-                    <p>Spring Core, Spring Boot, Spring Security, Spring Data JPA, Hibernate</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Frontend (Learning)</h3>
-                    <p>HTML, CSS, JavaScript, Tailwind CSS, React</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Databases</h3>
-                    <p>MySQL, MongoDB</p>
-                </div>  
-                <div class="skill-card">
-                    <h3>Tools and Platforms</h3>
-                    <p>Git, GitHub, Maven, Docker (Compose, Volume, Networking)</p> 
-                </div>
-                <div class="skill-card">
-                    <h3>Cloud (AWS)</h3>
-                    <p>EC2, Elastic Beanstalk, S3, IAM, Lambda</p> 
-                </div>
-                <div class="skill-card">
-                    <h3>Data Structures & Algorithms</h3>
-                    <p>Array, Linked List, Stack, Queue, Trees, Graph, Dynamic Programming </p>
-                </div>
+        <section id="about" class="py-24 section">
+            <div class="container mx-auto px-6">
+                 <div class="bg-slate-800/50 rounded-lg p-8 md:p-12 border border-slate-700">
+                    <div class="text-center mb-12 animated-item">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white gradient-text">About Me</h2>
+                        <p class="text-slate-400 mt-2 max-w-2xl mx-auto">A brief introduction to my skills, background, and what drives me as a developer.</p>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-start gap-16">
+                        <div class="md:w-1/2 animated-item" style="--delay: 0.2s;">
+                            <h3 class="text-2xl font-semibold text-white mb-4">Who I Am</h3>
+                            <p class="text-slate-400 mb-6 text-lg">
+                                I am a passionate developer with a Master's in Computer Applications from Vellore Institute of Technology. I thrive on solving complex problems and building high-quality software. My expertise spans across the full stack, from designing responsive user interfaces with React and Tailwind CSS to developing robust RESTful APIs with Spring Boot and managing databases like MySQL and MongoDB.
+                            </p>
+                            <p class="text-slate-400 text-lg">
+                                With a strong foundation in data structures and algorithms, I am committed to writing clean, efficient, and maintainable code.
+                            </p>
+                        </div>
+                        <div class="md:w-1/2 animated-item" style="--delay: 0.4s;">
+                            <h3 class="text-2xl font-semibold text-white mb-4">Technical Skills</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-slate-900/70 p-4 rounded-lg flex items-center gap-3 transition-transform hover:scale-105 border border-slate-700"><i data-feather="code" class="w-6 h-6 text-cyan-400"></i><span class="font-medium text-slate-200">Java & Spring Boot</span></div>
+                                <div class="bg-slate-900/70 p-4 rounded-lg flex items-center gap-3 transition-transform hover:scale-105 border border-slate-700"><i data-feather="figma" class="w-6 h-6 text-cyan-400"></i><span class="font-medium text-slate-200">React & Tailwind</span></div>
+                                <div class="bg-slate-900/70 p-4 rounded-lg flex items-center gap-3 transition-transform hover:scale-105 border border-slate-700"><i data-feather="database" class="w-6 h-6 text-cyan-400"></i><span class="font-medium text-slate-200">MySQL & MongoDB</span></div>
+                                <div class="bg-slate-900/70 p-4 rounded-lg flex items-center gap-3 transition-transform hover:scale-105 border border-slate-700"><i data-feather="server" class="w-6 h-6 text-cyan-400"></i><span class="font-medium text-slate-200">RESTful APIs</span></div>
+                                <div class="bg-slate-900/70 p-4 rounded-lg flex items-center gap-3 transition-transform hover:scale-105 border border-slate-700"><i data-feather="git-branch" class="w-6 h-6 text-cyan-400"></i><span class="font-medium text-slate-200">Git & GitHub</span></div>
+                                <div class="bg-slate-900/70 p-4 rounded-lg flex items-center gap-3 transition-transform hover:scale-105 border border-slate-700"><i data-feather="box" class="w-6 h-6 text-cyan-400"></i><span class="font-medium text-slate-200">Docker</span></div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
             </div>
         </section>
-        <section class="section" id="projects">
-            <div class="section-heading">
-                <h2>Selected Projects<span>.</span></h2>
-            </div>
-            <div class="section-content">
-                <div class="project-card">
-                    <h3>Postora - Blogging Platform Backend</h3>
-                    <p>Built a secure and scalable RESTful backend for a blogging platform.</p>
-                    <ul>
-                        <li>Role-based access (USER/ADMIN) with CRUD for posts, categories, tags, likes, bookmarks, and comments.</li>
-                        <li>Integrated DTOs, validation, JavaMailSender, Swagger, and auditing (@CreateDate, @LastModifiedDate).</li>
-                        <li>AWS S3 image upload support and deployment on Elastic Beanstalk with environment-level configuration.</li>
-                    </ul>
-                    <a href="https://github.com/ritik-raj-25/postora" target="_blank">View on GitHub</a>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-24 section">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 animated-item">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white gradient-text">Featured Projects</h2>
+                    <p class="text-slate-400 mt-2 max-w-2xl mx-auto">Here are some of the projects I'm proud of.</p>
                 </div>
-                <div class="project-card">
-                    <h3>CPU Scheduling Algorithm Simulator</h3>
-                    <p>Console-based simulator for 8 CPU scheduling algorithms with dynamic input and execution flow.</p>
-                    <ul>
-                        <li>Algorithms: FCFS, SJF, RR, HRRN, MLQ, etc.</li>
-                        <li>Calculated turnaround, completion, and waiting times using queues, priority queues, lists, and arrays.</li>
-                    </ul>
-                    <a href="#" target="_blank">View on GitHub</a>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Project Card 1 -->
+                    <div class="bg-slate-800/50 rounded-lg shadow-lg overflow-hidden flex flex-col card-glow border border-slate-700 animated-item" style="--delay: 0.2s;">
+                        
+                        <div class="pl-4 pr-4 pt-4">
+                            <img src="/assets/images/codingsena-project.png" alt="Coding Sena Project" class="w-full rounded-lg h-85 object-cover">
+                        </div>
+                        <div class="p-8 flex-grow">
+                            <h3 class="text-2xl font-semibold mb-3 text-white">Coding Sena - EdTech Platform</h3>
+                            <p class="text-slate-400 mb-4">A secure EdTech platform featuring AI-powered quiz generation, Stripe payments, and blockchain-backed test logs ensuring transparent and tamper-proof exam records.</p>
+                        </div>
+                        <div class="p-6 bg-slate-800/80 flex justify-end items-center gap-6">
+                            <a href="https://github.com/ritik-raj-25/coding-sena-frontend.git" target="_blank" class="text-slate-300 hover:text-cyan-400 transition duration-300 flex items-center gap-2 font-medium"><i data-feather="github" class="w-5 h-5"></i>GitHub</a>
+                            <a href="https://codingsena.tech/" target="_blank" class="text-slate-300 hover:text-cyan-400 transition duration-300 flex items-center gap-2 font-medium"><i data-feather="external-link" class="w-5 h-5"></i>Live Demo</a>
+                        </div>
+                    </div>
+                    <!-- Project Card 2 -->
+                    <div class="bg-slate-800/50 rounded-lg shadow-lg overflow-hidden flex flex-col card-glow border border-slate-700 animated-item" style="--delay: 0.4s;">
+                        <div class="pl-4 pr-4 pt-4">
+                            <img src="/assets/images/postora-project.png" alt="Postora Project" class="w-full rounded-lg h-85 object-cover">
+                        </div>
+                        <div class="p-8 flex-grow">
+                            <h3 class="text-2xl font-semibold mb-3 text-white">Postora - Blogging Platform</h3>
+                            <p class="text-slate-400 mb-4">A scalable full-stack blogging application with role-based access and comprehensive features for post and content management.</p>
+                        </div>
+                        <div class="p-6 bg-slate-800/80 flex justify-end items-center gap-6">
+                            <a href="https://github.com/ritik-raj-25/postora" target="_blank" class="text-slate-300 hover:text-cyan-400 transition duration-300 flex items-center gap-2 font-medium"><i data-feather="github" class="w-5 h-5"></i>GitHub</a>
+                            <span class="text-slate-500 flex items-center gap-2 cursor-not-allowed font-medium"><i data-feather="clock" class="w-5 h-5"></i>Coming Soon</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-        <section class="section" id="education">
-            <div class="section-heading">
-                <h2>Education<span>.</span></h2>
-            </div>
-            <div class="section-content">
-                <div class="education-card">
-                    <h3>MCA</h3>
-                    <p><strong>Vellore Institute of Technology, Vellore</strong></p>
-                    <p>CGPA: 8.85</p>
-                    <p>July 2024 - April 2026</p>
-                </div>
-                <div class="education-card">
-                <h3>BCA</h3>
-                    <p><strong>Rajarshi School of Management & Technology, Varanasi</strong></p>
-                    <p>Percentage: 70.25%</p>
-                    <p>Oct 2021 - Jun 2024</p>
-                </div>
-                <div class="education-card">
-                    <h3>XII (CBSE)</h3>
-                    <p><strong>Central Public School, Samastipur</strong></p>
-                    <p>Percentage: 77%</p>
-                    <p>2021</p>
-                </div>
-                <div class="education-card">
-                    <h3>X (CBSE)</h3>
-                    <p><strong>Central Public School, Samastipur</strong></p>
-                    <p>Percentage: 84%</p>
-                    <p>2019</p>
-                </div>
-            </div>
-        </section>
-        <section class="section" id="certificates">
-            <div class="section-heading">
-                <h2>Certificates<span>.</span></h2>
-            </div>
-            <div class="section-content">
-                <div class="certificate-card">
-                    <h3>[NEW] Master Spring Boot 3 & Spring Framework 6 with Java</h3>
-                    <p><strong>Udemy</strong></p>
-                    <p>Completed: September 2025</p>
-                    <a href="assets/certificates/springBootCertificatePdf.pdf" target="_blank">View Certificate</a>
-                </div>
-                <div class="certificate-card">
-                    <h3>DECODE JAVA+DSA 1.0</h3>
-                    <p><strong>Physics Wallah</strong></p>
-                    <p>Completed: December 2024</p>
-                    <a href="assets/certificates/CertificateDSA.pdf" target="_blank">View Certificate</a>
+
+        <!-- Education Section -->
+        <section id="education" class="py-24 section">
+            <div class="container mx-auto px-6">
+                <div class="bg-slate-800/50 rounded-lg p-8 md:p-12 border border-slate-700">
+                    <div class="text-center mb-16 animated-item">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white gradient-text">My Education</h2>
+                        <p class="text-slate-400 mt-2 max-w-2xl mx-auto">My academic journey and qualifications.</p>
+                    </div>
+                    <div class="max-w-3xl mx-auto">
+                        <div class="relative border-l-2 border-cyan-700/50 pl-10 space-y-12">
+                            <!-- PG -->
+                            <div class="relative animated-item" style="--delay: 0.2s;">
+                                <div class="absolute -left-[49px] top-1.5 w-6 h-6 bg-cyan-500 rounded-full border-4 border-slate-800 flex items-center justify-center">
+                                    <i data-feather="award" class="w-3 h-3 text-slate-900"></i>
+                                </div>
+                                <p class="text-cyan-400 font-medium">2024 - 2026</p>
+                                <h3 class="text-xl font-semibold text-white mt-1">Master of Computer Applications (MCA)</h3>
+                                <p class="text-slate-400">Vellore Institute of Technology, Vellore</p>
+                            </div>
+                            <!-- UG -->
+                            <div class="relative animated-item" style="--delay: 0.4s;">
+                                <div class="absolute -left-[49px] top-1.5 w-6 h-6 bg-cyan-500 rounded-full border-4 border-slate-800 flex items-center justify-center">
+                                    <i data-feather="book-open" class="w-3 h-3 text-slate-900"></i>
+                                </div>
+                                <p class="text-cyan-400 font-medium">2021 - 2024</p>
+                                <h3 class="text-xl font-semibold text-white mt-1">Bachelor of Computer Applications (BCA)</h3>
+                                <p class="text-slate-400">Rajarshi School of Management & Technology, Varanasi</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-        <section class="section" id="achievements">
-            <div class="section-heading">
-                <h2>Achievements<span>.</span></h2>
-                <div class="achievements-badges">
-                    <img src="assets/images/365daysBadge.png" alt="365 Days of Code Badge" class="achievement-badge">
-                    <img src="assets/images/sql50Badge.png" alt="SQL 50 Problems Solved Badge" class="achievement-badge">
-                    <img src="assets/images/200DaysBadge.png" alt="200 Days of Code Badge" class="achievement-badge">
-                    <img src="assets/images/mayChallengeBadge.png" alt="May Challenge 2025 Badge" class="achievement-badge">
+
+         <!-- Achievements Section -->
+        <section id="achievements" class="py-24 section">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 animated-item">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white gradient-text">Achievements</h2>
+                    <p class="text-slate-400 mt-2 max-w-2xl mx-auto">Key accomplishments and milestones in my journey.</p>
                 </div>
-            </div>
-            <div class="section-content">
-                <div class="achievements-card">
-                    <h3>Highlights</h3>
-                    <ul>
-                        <li>Secured All India Rank 8 in VITMEE 2024 (MCA Entrance Exam).</li>
-                        <li>Solved over 500 DSA problems on Leetcode with 1600+ contest rating.</li>
-                        <li>Earned 14+ Leetcode badges including 365 Days Badge, SQL 50, Monthly & Annual Badges.</li>
-                    </ul>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- VITMEE -->
+                    <div class="bg-slate-800/50 p-6 rounded-lg border border-slate-700 card-glow text-center animated-item" style="--delay: 0.2s;">
+                        <div class="flex justify-center mb-4"><i data-feather="award" class="w-12 h-12 text-cyan-400"></i></div>
+                        <h3 class="text-xl font-semibold text-white">AIR 8 in VITMEE 2024</h3>
+                        <p class="text-slate-400 mt-2">Secured a top national rank in the VIT Master's Entrance Examination.</p>
+                    </div>
+                     <!-- Leetcode -->
+                    <div class="bg-slate-800/50 p-6 rounded-lg border border-slate-700 card-glow text-center animated-item" style="--delay: 0.4s;">
+                        <div class="flex justify-center mb-4"><i data-feather="code" class="w-12 h-12 text-cyan-400"></i></div>
+                        <h3 class="text-xl font-semibold text-white">500+ LeetCode Problems</h3>
+                        <p class="text-slate-400 mt-2">Solved over 500 Data Structures & Algorithms problems, achieving a 1600+ contest rating.</p>
+                    </div>
+                     <!-- LeetCode 365 Days Badge -->
+                    <div class="bg-slate-800/50 p-6 rounded-lg border border-slate-700 card-glow text-center animated-item" style="--delay: 0.6s;">
+                        <div class="flex justify-center mb-4"><i data-feather="calendar" class="w-12 h-12 text-cyan-400"></i></div>
+                        <h3 class="text-xl font-semibold text-white">LeetCode 365 Days Badge</h3>
+                        <p class="text-slate-400 mt-2">Earned the 365 Days Badge for consistent daily problem-solving, among 14+ other badges.</p>
+                    </div>
+                </div>
+                 <!-- PR -->
+                <div class="mt-20 text-center bg-slate-800/50 p-8 rounded-lg border border-slate-700 max-w-3xl mx-auto card-glow animated-item" style="--delay: 0.8s;">
+                    <h3 class="text-2xl font-semibold text-white">Position of Responsibility</h3>
+                    <div class="flex justify-center my-4"><i data-feather="users" class="w-10 h-10 text-cyan-400"></i></div>
+                    <p class="text-xl font-medium text-slate-200">Program Representative (MCA)</p>
+                    <p class="text-slate-400 mt-2">Act as a liaison between MCA students and faculty, communicating updates and coordinating academic information.</p>
                 </div>
             </div>
         </section>
-        <div>
-            <div id="readerControls">
-                <button id="playReader">▶ Play</button>
-                <button id="pauseReader">⏸ Pause</button>
-                <button id="resumeReader">▶ Resume</button>
-                <span class="material-symbols-outlined" id="close-readControls">close</span>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 section">
+            <div class="container mx-auto px-6">
+                <div class="bg-slate-800/50 rounded-lg p-8 md:p-12 border border-slate-700">
+                    <div class="max-w-2xl mx-auto text-center animated-item">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white gradient-text">Let's Connect</h2>
+                        <p class="text-lg text-slate-400 mb-8">I'm currently available for freelance work and open to discussing
+                            new projects. Send me a message and I'll get back to you shortly.</p>
+                    </div>
+                    <form id="contact-form" action="https://formspree.io/f/myznaykz" method="POST"
+                        class="max-w-2xl mx-auto animated-item">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-slate-300 font-medium mb-2">Name</label>
+                                <input type="text" id="name" name="name"
+                                    class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-md focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition text-white"
+                                    placeholder="Your Name">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-slate-300 font-medium mb-2">Email</label>
+                                <input type="email" id="email" name="email"
+                                    class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-md focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition text-white"
+                                    placeholder="Your Email">
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-slate-300 font-medium mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5"
+                                class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-md focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition text-white"
+                                placeholder="Your Message"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit"
+                                class="bg-cyan-500 text-white px-8 py-3 rounded-md font-semibold hover:bg-cyan-600 transition duration-300 shadow-lg shadow-cyan-500/30 text-lg">Send
+                                Message</button>
+                        </div>
+                    </form>
+                    <p id="form-status" class="mt-6 text-center text-lg"></p>
+                </div>
             </div>
-            <div class="reader">
-                <span class="material-symbols-outlined">auto_read_play</span>
-            </div>
-        </div>
+        </section>
     </main>
-    <footer class="footer" id="contact">
-        <div class="footer-title">
-            <h2>Let's work together<span>.</span></h2>
-        </div>   
-        <div class="footer-content">
-            <span class="material-symbols-outlined" id="emailIcon">mail</span>
-            <span class="material-symbols-outlined" id="callIcon">call</span>
-        </div> 
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 text-slate-400 py-8 relative z-10">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" class="hover:text-cyan-400 transition duration-300"><i data-feather="github"></i></a>
+                <a href="#" class="hover:text-cyan-400 transition duration-300"><i data-feather="linkedin"></i></a>
+                <a href="#" class="hover:text-cyan-400 transition duration-300"><i class="bxl bx-leetcode text-2xl translate-y-[-4px]"></i></a>
+            </div>
+            <p>&copy; 2025 Ritik Raj. All rights reserved.</p>
+        </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js">
-        
-    </script>
-    <script src="js/script.js"></script>
+
+    <!-- Back to top button -->
+    <button id="to-top-button" class="hidden fixed bottom-8 right-8 bg-cyan-500 text-white p-3 rounded-full shadow-lg hover:bg-cyan-600 transition-opacity duration-300 z-50">
+        <i data-feather="arrow-up"></i>
+    </button>
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 </html>
